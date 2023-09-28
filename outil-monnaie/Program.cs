@@ -5,11 +5,14 @@ class Program
 {
     static void Main()
     {
-        // Taux de change actuels
-        double tauxUSD = 0.78; // 1 CAD = 0.78 USD
-        double tauxEuro = 0.68; // 1 CAD = 0.68 Euro
+        // Taux de change 
+        double tauxUSD = 0.78; 
+        double tauxEuro = 0.68; 
 
+        // entrer le montant
         Console.Write("Entrez un montant en dollars canadiens : ");
+
+        //choisir la devise
         if (double.TryParse(Console.ReadLine(), out double montantEnCAD))
         {
             Console.Write("Choisissez la devise de conversion (USD/Euro) : ");
@@ -17,7 +20,7 @@ class Program
 
             double montantConverti = 0.0;
 
-            // Effectuer la conversion en fonction du choix de l'utilisateur
+            // Faire la conversion en fonction du choix 
             switch (choixDevise.ToLower())
             {
                 case "usd":
@@ -28,15 +31,11 @@ class Program
                     montantConverti = montantEnCAD * tauxEuro;
                     Console.WriteLine($"{montantEnCAD} CAD équivaut à {montantConverti} Euro");
                     break;
-                default:
-                    Console.WriteLine("Choix de devise invalide. Veuillez choisir USD ou Euro.");
-                    break;
+
+                    Console.ReadKey();
             }
         }
-        else
-        {
-            Console.WriteLine("Montant invalide. Assurez-vous d'entrer un nombre valide.");
-        }
+     
     }
 }
 
