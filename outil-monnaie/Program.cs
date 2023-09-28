@@ -1,52 +1,41 @@
 ﻿// Axelkone
-using System;
 
+using System;
 class Program
 {
     static void Main()
     {
-        // Taux de change 
-        double tauxUSD = 0.78; 
-        double tauxEuro = 0.68; 
+        double tauxUSD = 0.78; // Taux de change actuel : 1 CAD = 0.78 USD
+        double tauxEuro = 0.68; // Taux de change actuel : 1 CAD = 0.68 Euro
 
-        // entrer le montant
-        Console.Write("Entrez un montant en dollars canadiens : ");
-
-        //choisir la devise
-        if (double.TryParse(Console.ReadLine(), out double montantEnCAD))
+        Console.Write("Entrez un montant : ");
+        if (double.TryParse(Console.ReadLine(), out double montant))
         {
-            Console.Write("Choisissez la devise de conversion (USD/Euro) : ");
-            string choixDevise = Console.ReadLine();
+            Console.Write("Choisissez une devise (USD, CAD ou EURO) : ");
+            string devise = Console.ReadLine().ToLower();
 
             double montantConverti = 0.0;
 
-            // Faire la conversion en fonction du choix 
-            switch (choixDevise.ToLower())
+            switch (devise)
             {
                 case "usd":
-                    montantConverti = montantEnCAD * tauxUSD;
-                    Console.WriteLine($"{montantEnCAD} CAD équivaut à {montantConverti} USD");
+                    montantConverti = montant / tauxUSD;
+                    Console.WriteLine($"{montant} CAD équivaut à environ {montantConverti:F0} USD");
+                    break;
+                case "cad":
+                    montantConverti = montant * tauxUSD;
+                    Console.WriteLine($"{montant} USD équivaut à environ {montantConverti:F0} CAD");
                     break;
                 case "euro":
-                    montantConverti = montantEnCAD * tauxEuro;
-                    Console.WriteLine($"{montantEnCAD} CAD équivaut à {montantConverti} Euro");
+                    montantConverti = montant * tauxEuro;
+                    Console.WriteLine($"{montant} CAD équivaut à environ {montantConverti:F0} Euro");
+                    break;
+                default:
+                    Console.WriteLine("Devise invalide. Veuillez choisir parmi USD, CAD ou EURO.");
                     break;
 
                     Console.ReadKey();
             }
         }
-     
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
